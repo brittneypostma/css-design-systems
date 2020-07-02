@@ -1,5 +1,18 @@
 @import url("https://fonts.googleapis.com/css?family=Space+Mono:400|Work+Sans:400");
 
+/*! Least to most specific
+ element
+ class - attribute
+ ids
+ !important - don't ever use
+ order
+ depth
+*/
+
+* {
+  box-sizing: border-box;
+}
+
 :root {
   /*! Define colors as colors */
   --red: #ff5470;
@@ -12,15 +25,6 @@
   --darkBlue: #0e2e55;
   --gray: #bfbfbf;
   --lightGray: #f2f4f6;
-
-  /*! shadow */
-  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.6);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
   /*! Define colors intentions */
   --accent: var(--green);
@@ -35,9 +39,22 @@
   --buttonPadding: 5px 15px;
   --borderRadius: 4px;
 
+  /*! Positioning */
+  --p: 2.5%;
+
+  /*! Shadows */
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
   /*! Type */
   --headingFont: "Space Mono", monospace;
   --bodyFont: "Work Sans", sans-serif;
+  --baseFontSize: 112.5%;
   --h1: 3.052em;
   --h2: 2.441em;
   --h3: 1.953em;
@@ -48,14 +65,31 @@
 
 /*! Typescale css */
 html {
-  font-size: 112.5%;
-} /*18px*/
+  font-size: var(--baseFontSize);
+} /*18px base*/
 
 body {
+  background: var(--background);
+  color: var(--textColor);
   font-family: var(--bodyFont);
   font-weight: 400;
   line-height: 1.65;
   padding-bottom: 300px;
+}
+
+header {
+  --background: var(--darkBlue);
+  background: var(--background);
+  color: white;
+  height: 3rem;
+  box-shadow: var(--shadow-md);
+  align-items: center;
+  padding: 0 var(--p);
+}
+
+header nav a {
+  color: white;
+  text-decoration: none;
 }
 
 p {
@@ -109,20 +143,6 @@ small,
 
 /* END of typescale */
 
-/*! Least to most specific
- element
- class - attribute
- ids
- !important - don't ever use
- order
- depth
-*/
-
-body {
-  background: var(--background);
-  color: var(--textColor);
-}
-
 .dark {
   --background: var(--black);
   --textColor: var(--lightGray);
@@ -148,9 +168,9 @@ textarea {
   border-radius: 4px;
 }
 
-/* textarea {
+textarea {
   width: 100%;
-} */
+}
 
 ::placeholder {
   color: var(--gray);
@@ -210,3 +230,59 @@ button[disabled] {
 hr {
   border-top: var(--border);
 }
+
+.layout {
+  padding: 2rem var(--p);
+}
+
+.logo {
+  --baseFontSize: 2rem;
+  font-size: var(--baseFontSize);
+  margin: 0;
+}
+
+.grid {
+  --gridCols: 2;
+  --justifyContent: space-between;
+  display: grid;
+  grid-template-columns: repeat(var(--gridCols), 1fr);
+  justify-content: var(--justifyContent);
+  gap: 20px;
+}
+
+.grid-center {
+  --justifyContent: center;
+}
+
+.cols-4 {
+  --gridCols: 4;
+}
+
+.flex {
+  --justifyContent: space-between;
+  display: flex;
+  justify-content: var(--justifyContent);
+}
+
+.flex-center {
+  --justifyContent: center;
+}
+
+/*! Media Queries */
+
+@media only screen and (max-width: 640px) {
+  :root {
+    --baseFontSize: 100%;
+  }
+}
+@media only screen and (max-width: 768px) {
+}
+@media only screen and (max-width: 1024px) {
+  .block {
+    display: block;
+  }
+}
+@media only screen and (max-width: 1280px) {
+}
+
+/* End Media Queries */
