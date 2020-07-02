@@ -15,8 +15,9 @@
 
 :root {
   /*! Define colors as colors */
-  --red: #ff5470;
-  --darkRed: #db2d4a;
+  --lightRed: #fd3f3f;
+  --red: #f72525;
+  --darkRed: #db2d2d;
   --yellow: #fde24f;
   --green: #00ebc7;
   --black: #1b2d45;
@@ -40,7 +41,8 @@
   --borderRadius: 4px;
 
   /*! Positioning */
-  --p: 2.5%;
+  --p-sm: 10px;
+  --p-md: 2.5%;
 
   /*! Shadows */
   --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
@@ -81,15 +83,29 @@ header {
   --background: var(--darkBlue);
   background: var(--background);
   color: white;
-  height: 3rem;
   box-shadow: var(--shadow-md);
   align-items: center;
-  padding: 0 var(--p);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: var(--p-sm) var(--p-md);
 }
 
 header nav a {
   color: white;
   text-decoration: none;
+  transition: var(--transition);
+}
+
+header nav a:hover {
+  color: var(--accent);
+  border-bottom: 5px solid var(--yellow);
+}
+
+/*! + operator parent + child */
+header nav a + a {
+  margin-left: 10px;
 }
 
 p {
@@ -165,7 +181,7 @@ input,
 textarea {
   padding: 4px 5px;
   border: var(--border);
-  border-radius: 4px;
+  border-radius: var(--borderRadius);
 }
 
 textarea {
@@ -218,6 +234,11 @@ input[type="reset"] {
 }
 
 input[type="reset"]:hover {
+  background-color: var(--lightRed);
+  box-shadow: var(--shadow-md);
+}
+
+input[type="reset"]:active {
   background-color: var(--darkRed);
   box-shadow: var(--shadow-md);
 }
@@ -232,7 +253,7 @@ hr {
 }
 
 .layout {
-  padding: 2rem var(--p);
+  padding: calc(50px + 2rem) var(--p-md);
 }
 
 .logo {
