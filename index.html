@@ -22,15 +22,29 @@
   <meta name="theme-color" content="#fafafa" />
 </head>
 
-<body class="oled">
+<body class="" id="mode-wrapper">
   <!-- Add your site or application content here -->
   <header class="flex">
-    <h1 class='logo'>Logo</h1>
+    <h1 class='logo'>Logo</h1> 
     <nav>
       <a href="#">Home</a>
       <a href="#">About</a>
       <a href="#">Contact</a>
     </nav>
+    <input type="checkbox" id="toggle-mode-cb" />
+
+<div id="mode-wrapper">
+  
+  <label id="toggle-mode" for="toggle-mode-cb">
+    <span class="sr-only">Toggle</span>
+    <span class="toggle-border">
+      <span class="toggle-indicator"></span>
+    </span>
+  </label>
+  
+
+  
+</div>
   </header>
   <main class="layout">
     <h1>Hello</h1>
