@@ -20,12 +20,16 @@
   --darkRed: #db2d2d;
   --yellow: #fde24f;
   --green: #00ebc7;
-  --black: #1b2d45;
-  --lightBlue: #31598f;
-  --blue: #214a80;
-  --darkBlue: #0e2e55;
+  --black: #1f262e;
+  --lightBlue: #43b4b4;
+  --blue: #289292;
+  --darkBlue: #0e5355;
+  --lightPurple: #635677;
+  --purple: #3d334b;
+  --darkPurple: #282231;
   --gray: #bfbfbf;
   --lightGray: #f2f4f6;
+  --white: #ffffff;
 
   /*! Define colors intentions */
   --accent: var(--green);
@@ -33,6 +37,9 @@
   --background: var(--lightGray);
   --textColor: var(--black);
   --borderColor: var(--gray);
+  --cardBg: var(--white);
+  --header: var(--lightPurple);
+  --footer: var(--lightPurple);
 
   /*! Styles */
   --border: solid 1px var(--borderColor);
@@ -65,7 +72,25 @@
   --smallText: 0.8em;
 }
 
-/*! Typescale css */
+/*! Theme */
+.dark {
+  --cardBg: var(--purple);
+  --header: var(--purple);
+  --footer: var(--purple);
+  --background: var(--black);
+  --textColor: var(--lightGray);
+}
+
+.oled {
+  --black: #000;
+  --cardBg: var(--darkPurple);
+  --header: var(--darkPurple);
+  --footer: var(--darkPurple);
+  --background: var(--black);
+  --textColor: var(--lightGray);
+}
+
+/*! Custom css */
 html {
   font-size: var(--baseFontSize);
 } /*18px base*/
@@ -76,13 +101,11 @@ body {
   font-family: var(--bodyFont);
   font-weight: 400;
   line-height: 1.65;
-  padding-bottom: 300px;
 }
 
 header {
-  --background: var(--darkBlue);
-  background: var(--background);
-  color: white;
+  background: var(--header);
+  color: var(--white);
   box-shadow: var(--shadow-md);
   align-items: center;
   position: fixed;
@@ -93,9 +116,10 @@ header {
 }
 
 header nav a {
-  color: white;
+  color: var(--white);
   text-decoration: none;
   transition: var(--transition);
+  border-bottom: 1px solid var(--yellow);
 }
 
 header nav a:hover {
@@ -103,9 +127,38 @@ header nav a:hover {
   border-bottom: 5px solid var(--yellow);
 }
 
-/*! + operator parent + child */
+/* + operator parent + child */
 header nav a + a {
   margin-left: 10px;
+}
+
+footer {
+  --footerTextColor: var(--lightGray);
+  color: var(--footerTextColor);
+  background: var(--footer);
+  padding: var(--p-sm);
+  text-align: center;
+}
+
+footer a {
+  color: var(--footerTextColor);
+  transition: var(--transition);
+  text-decoration: none;
+  border-bottom: 1px solid var(--yellow);
+}
+
+footer a:hover {
+  color: var(--accent);
+  border-bottom: 5px solid var(--yellow);
+}
+
+footer p {
+  max-width: none;
+  margin-bottom: 0;
+}
+
+.layout {
+  padding: calc(50px + 2rem) var(--p-md) 2rem;
 }
 
 p {
@@ -115,7 +168,7 @@ p {
 
 p a,
 blockquote a {
-  color: var(--black);
+  color: var(--textColor);
   text-decoration: none;
   border-bottom: solid 2px var(--accent);
 }
@@ -159,14 +212,9 @@ small,
 
 /* END of typescale */
 
-.dark {
-  --background: var(--black);
-  --textColor: var(--lightGray);
-}
-
 blockquote {
-  background-color: white;
-  border-left: solid 10px var(--darkBlue);
+  background-color: var(--cardBg);
+  border-left: solid 10px var(--accent);
   margin: 10px;
   padding: 2em;
   box-shadow: var(--shadow-lg);
@@ -200,7 +248,7 @@ input[type="submit"],
 input[type="reset"],
 button {
   --buttonColor: var(--blue);
-  --textColor: white;
+  --textColor: var(--white);
   appearance: none;
   cursor: pointer;
   color: var(--textColor);
@@ -252,14 +300,32 @@ hr {
   border-top: var(--border);
 }
 
-.layout {
-  padding: calc(50px + 2rem) var(--p-md);
-}
-
 .logo {
   --baseFontSize: 2rem;
   font-size: var(--baseFontSize);
   margin: 0;
+}
+
+.card {
+  background-color: var(--cardBg);
+  padding: 2em;
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--borderRadius);
+}
+
+/* First item never has top margin */
+.card > *:first-child {
+  margin-top: 0;
+}
+/* Last item never has bottom margin */
+.card > *:last-child {
+  margin-bottom: 0;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 33% 67%;
+  grid-gap: 20px;
 }
 
 .grid {
