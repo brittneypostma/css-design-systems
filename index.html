@@ -22,8 +22,11 @@
   <meta name="theme-color" content="#fafafa" />
 </head>
 
-<body class="" id="mode-wrapper">
+<body>
   <!-- Add your site or application content here -->
+  
+  <input type="checkbox" id="toggle-switch" />
+  <div class="theme">
   <header class="flex">
     <h1 class='logo'>Logo</h1> 
     <nav>
@@ -31,20 +34,15 @@
       <a href="#">About</a>
       <a href="#">Contact</a>
     </nav>
-    <input type="checkbox" id="toggle-mode-cb" />
+    <div class="switch-wrapper">
+      <label class="toggle-label" for="toggle-switch">
+        <span class="sr-only">Toggle</span>
+        <span class="toggle-border">
+          <span class="toggle-icon"></span>
+        </span>
+      </label>
+    </div>
 
-<div id="mode-wrapper">
-  
-  <label id="toggle-mode" for="toggle-mode-cb">
-    <span class="sr-only">Toggle</span>
-    <span class="toggle-border">
-      <span class="toggle-indicator"></span>
-    </span>
-  </label>
-  
-
-  
-</div>
   </header>
   <main class="layout">
     <h1>Hello</h1>
@@ -144,6 +142,7 @@
   </nav>
   <p>&copy;<script>document.write(new Date().getFullYear());</script></p>
 </footer>
+</div>
   <script src="js/vendor/modernizr-3.11.2.min.js"></script>
   <script src="js/plugins.js"></script>
   <script src="js/main.js"></script>

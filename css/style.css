@@ -13,6 +13,8 @@
   box-sizing: border-box;
 }
 
+/*! Theme */
+
 :root {
   /*! Define colors as colors */
   --lightRed: #fd3f3f;
@@ -72,28 +74,13 @@
   --smallText: 0.8em;
 }
 
-@media screen and (prefers-color-scheme: light) {
-  :root {
-    --accent: var(--green);
-    --danger: var(--red);
-    --background: var(--lightGray);
-    --textColor: var(--black);
-    --borderColor: var(--gray);
-    --cardBg: var(--white);
-    --header: var(--lightPurple);
-    --footer: var(--lightPurple);
-  }
-}
-/*! Theme */
-/* 
-@media screen and (prefers-color-scheme: dark) {
-  :root {
-    --cardBg: var(--purple);
-    --header: var(--purple);
-    --footer: var(--purple);
-    --background: var(--black);
-    --textColor: var(--lightGray);
-  }
+/*! Toggle Switch */
+
+.theme {
+  transition: var(--transition);
+  background: var(--background);
+  color: var(--textColor);
+  font-family: var(--bodyFont);
 }
 
 .oled {
@@ -103,80 +90,15 @@
   --footer: var(--darkPurple);
   --background: var(--black);
   --textColor: var(--lightGray);
-} */
+}
 
-/*! Toggle Switch */
-
-#toggle-mode-cb {
+/* Don't show checkbox */
+#toggle-switch {
   display: none;
 }
 
-#toggle-mode {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 20px;
-}
-
-#toggle-mode .toggle-border {
-  border: 1px solid var(--black);
-  width: 50px;
-  height: 20px;
-  display: block;
-  border-radius: 20px;
-  position: relative;
-}
-
-#toggle-mode .toggle-indicator {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  position: absolute;
-  background-color: var(--black);
-  top: 2px;
-  left: 2px;
-  transition: all 0.3s ease-in-out;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-#toggle-mode .toggle-indicator::after {
-  content: "";
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  position: absolute;
-  bottom: -3px;
-  right: 5px;
-  background-color: var(--black);
-}
-
-#mode-wrapper {
-  transition: var(--transition);
-}
-
-/* #mode-wrapper .mode {
-  transition: all 0.3s ease-in-out;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-} */
-
-/* #mode-wrapper {
-  background-color: white;
-  color: #1e1f26;
-} */
-/* 
-#mode-wrapper .mode__light {
-  opacity: 1;
-}
-
-#mode-wrapper .mode__dark {
-  opacity: 0;
-} */
-
-#toggle-mode-cb:checked {
+/* Change theme when checked */
+#toggle-switch:checked + .theme {
   --cardBg: var(--purple);
   --header: var(--purple);
   --footer: var(--purple);
@@ -184,22 +106,57 @@
   --textColor: var(--lightGray);
 }
 
-/* #toggle-mode-cb:checked .mode__light {
-  opacity: 0;
-}
-
-#toggle-mode-cb:checked .mode__dark {
-  opacity: 1;
-} */
-
-#toggle-mode-cb:checked + #mode-wrapper .toggle-border {
-  border-color: var(--yellow);
-}
-
-#toggle-mode-cb:checked + #mode-wrapper .toggle-indicator {
-  background-color: var(--yellow);
-  left: calc(50px - 18px);
+/* Rotate icon when checked */
+#toggle-switch:checked + .theme .toggle-icon {
+  background: var(--yellow);
+  left: 25px;
   transform: rotate(180deg);
+}
+
+.switch-wrapper {
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.toggle-label {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 20px;
+}
+
+.toggle-border {
+  border: 2px solid var(--yellow);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 50px;
+  height: 30px;
+  display: block;
+  border-radius: 20px;
+  position: relative;
+}
+
+.toggle-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: var(--blue);
+  top: 4px;
+  left: 5px;
+  transition: var(--transition);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.toggle-icon::after {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -3px;
+  right: 5px;
+  background-color: var(--blue);
 }
 
 /*! Custom css */
@@ -208,9 +165,6 @@ html {
 } /*18px base*/
 
 body {
-  background: var(--background);
-  color: var(--textColor);
-  font-family: var(--bodyFont);
   font-weight: 400;
   line-height: 1.65;
 }
@@ -231,7 +185,7 @@ header nav a {
   color: var(--white);
   text-decoration: none;
   transition: var(--transition);
-  border-bottom: 1px solid var(--yellow);
+  border-bottom: 2px solid var(--yellow);
 }
 
 header nav a:hover {
@@ -256,7 +210,7 @@ footer a {
   color: var(--footerTextColor);
   transition: var(--transition);
   text-decoration: none;
-  border-bottom: 1px solid var(--yellow);
+  border-bottom: 2px solid var(--yellow);
 }
 
 footer a:hover {
@@ -485,3 +439,26 @@ hr {
 }
 
 /* End Media Queries */
+/* 
+  @media screen and (prefers-color-scheme: light) {
+    :root {
+      --accent: var(--green);
+      --danger: var(--red);
+      --background: var(--lightGray);
+      --textColor: var(--black);
+      --borderColor: var(--gray);
+      --cardBg: var(--white);
+      --header: var(--lightPurple);
+      --footer: var(--lightPurple);
+    }
+  } 
+ @media screen and (prefers-color-scheme: dark) {
+  :root {
+    --cardBg: var(--purple);
+    --header: var(--purple);
+    --footer: var(--purple);
+    --background: var(--black);
+    --textColor: var(--lightGray);
+  }
+} 
+*/
